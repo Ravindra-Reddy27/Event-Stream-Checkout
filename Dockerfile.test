@@ -1,0 +1,21 @@
+FROM python:3.9-slim
+
+WORKDIR /app
+
+# 1. Install System Dependencies
+RUN apt-get update && apt-get install -y default-libmysqlclient-dev build-essential
+
+# 2. Copy and Install Python Dependencies
+COPY src/order_processor/requirements.txt .
+RUN pip install -r requirements.txt
+RUN pip install pytest mock boto3
+
+# 3. Copy Source Code and Tests
+COPY src/ src/
+COPY tests/ tests/
+
+# 4. Set Python Path so 'src' modules are discoverable
+ENV PYTHONPATH=/app
+
+# 5. Default command (can be overridden in docker-compose)
+CMD ["pytest", "tests/"]

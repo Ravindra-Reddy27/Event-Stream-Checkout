@@ -1,0 +1,25 @@
+# --- Terraform Generated Files ---
+# CRITICAL: Contains real passwords and AWS keys
+*.tfstate
+*.tfstate.backup
+
+# Downloaded plugins (heavy binaries)
+.terraform/
+
+.env
+
+# --- Build Artifacts ---
+# Zips created by Terraform (generated from src/)
+*.zip
+
+# --- Python Generated Files ---
+# Compiled python code
+__pycache__/
+*.pyc
+
+# --- Local Libraries (CRITICAL for your structure) ---
+# You installed pymysql directly into src/order_processor/
+# We DO NOT want to push library folders to GitHub.
+src/order_processor/pymysql/
+src/order_processor/pymysql-*.dist-info/
+src/order_processor/bin/
